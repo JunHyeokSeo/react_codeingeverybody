@@ -34,7 +34,6 @@ function Counter({ title, initValue }){
 	//const, let 상관 없이 정상 동작, 차이 알아볼 필요 있음
 
 	//set함수의 값은 함수일수도 값일수도 있다
-	//함수일 때
 	const [count, setCount] = useState(initValue);
 	const [step, setStep] = useState(1);
 	const [history, setHistory] = useState([5, 5]);
