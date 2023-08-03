@@ -1,3 +1,4 @@
+import { Container } from '@mui/material';
 import './App.css';
 import { useEffect, useState } from 'react';
 
@@ -90,10 +91,10 @@ function CounterUseEffect(){
 //이를 리액트에서는 프로퍼티스라고 하고 줄여서 props로 표현한다
 function App() {
   return (
-	<div>
+	<Container>
 		<Counter title="불면증 카운터" initValue = {10}></Counter>
 		<CounterUseEffect></CounterUseEffect>
-	</div>
+	</Container>
   );
 }
 
