@@ -34,17 +34,25 @@ function Counter({ title, initValue }){
 	//const, let 상관 없이 정상 동작, 차이 알아볼 필요 있음
 	const [count, setCount] = useState(initValue);
 	const [step, setStep] = useState(1);
+	const [history, setHistory] = useState([5, 5]);
 	function up(){
-		setCount(count + step);
+		const newCount = count + step;
+		setCount(newCount);
+		history.push(newCount);
+		setHistory(history);
 	}
 	const stepHandler = (evt) => {
 		setStep(Number(evt.target.value));
 	};
 	return (<div>
 		<h1>{title}</h1>
-		<button onClick={up}>+</button> {count}
+		<button onClick={up}>+</button>
 		<input type="number" value={step} onChange={stepHandler}/>
-	</div>);
+		{count}
+		<ol>
+			{history.map((e, index)=><li key={index}>{e}</li>)}
+		</ol>
+	</ div>);
 }
 
 //함수와 태그를 등가관계에 놓고 태그를 함수로 표현
@@ -54,7 +62,7 @@ function Counter({ title, initValue }){
 function App() {
   return (
 	<div>
-		<Counter title="불면증 카운터" initValue = {0}></Counter>
+		<Counter title="불면증 카운터" initValue = {10}></Counter>
 	</div>
   );
 }
