@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 //단일 값 반환을 위해, div로 묶음
 //변수로서 사용하기 위해 {} 중괄호 사용
@@ -32,6 +32,9 @@ function Counter({ title, initValue }){
 	//const지만 setCount를 통해 값을 변경할 수 있는 이유?
 	//react는 상수가 필요했다기 보다 값이 변경되었다는 것을 확인하는 방법이 필요했음
 	//const, let 상관 없이 정상 동작, 차이 알아볼 필요 있음
+
+	//set함수의 값은 함수일수도 값일수도 있다
+	//함수일 때
 	const [count, setCount] = useState(initValue);
 	const [step, setStep] = useState(1);
 	const [history, setHistory] = useState([5, 5]);
@@ -55,6 +58,24 @@ function Counter({ title, initValue }){
 	</ div>);
 }
 
+//sideEffect는 useEffect로 격리한다.
+//useEffect는 랜더링 될 때마다 실행 => 빈 배열을 입력하여 한번만 실행하게 함
+function CounterUseEffect(){
+	const [count, setCount] = useState(0);
+	useEffect(()=>{
+		console.log('useEffect')
+		const id = setInterval(() => {
+			setCount(oldCount=>oldCount + 1);
+		}, 1000)
+		return ()=>{
+			clearInterval(id);
+		}
+	}, []);
+	return <div>
+		<h1>useEffect Counter</h1> {count}
+	</div>
+}
+
 //함수와 태그를 등가관계에 놓고 태그를 함수로 표현
 //props는 입력값이다.
 //html에서는 태그 안의 값을 속성이라고 하고,
@@ -63,8 +84,10 @@ function App() {
   return (
 	<div>
 		<Counter title="불면증 카운터" initValue = {10}></Counter>
+		<CounterUseEffect></CounterUseEffect>
 	</div>
   );
 }
+
 
 export default App;
