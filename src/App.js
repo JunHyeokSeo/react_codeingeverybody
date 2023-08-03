@@ -29,13 +29,20 @@ function Counter({ title, initValue }){
 	// const setCount = countState[1];
 
 	//위 코드를 아래 한줄로 변경 - '구조 분해 할당'
+	//const지만 setCount를 통해 값을 변경할 수 있는 이유?
+	//react는 상수가 필요했다기 보다 값이 변경되었다는 것을 확인하는 방법이 필요했음
+	//const, let 상관 없이 정상 동작, 차이 알아볼 필요 있음
 	const [count, setCount] = useState(initValue);
+	const [step, setStep] = useState(1);
 	function up(){
-		setCount(count + 1);
+		setCount(count + step);
 	}
 	return (<div>
 		<h1>{title}</h1>
 		<button onClick={up}>+</button> {count}
+		<input type="number" value={step} onChange={(evt)=>{
+			setStep(Number(evt.target.value));
+		}}/>
 	</div>);
 }
 
