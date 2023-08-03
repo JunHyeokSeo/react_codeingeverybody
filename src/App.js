@@ -37,12 +37,13 @@ function Counter({ title, initValue }){
 	function up(){
 		setCount(count + step);
 	}
+	const stepHandler = (evt) => {
+		setStep(Number(evt.target.value));
+	};
 	return (<div>
 		<h1>{title}</h1>
 		<button onClick={up}>+</button> {count}
-		<input type="number" value={step} onChange={(evt)=>{
-			setStep(Number(evt.target.value));
-		}}/>
+		<input type="number" value={step} onChange={stepHandler}/>
 	</div>);
 }
 
