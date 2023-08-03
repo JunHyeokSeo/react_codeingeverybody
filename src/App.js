@@ -47,7 +47,12 @@ function Counter({ title, initValue }){
 	const stepHandler = (evt) => {
 		setStep(Number(evt.target.value));
 	};
-	return (<div>
+	const style = { 
+		border: '10px solid black',
+		padding:10,
+		backgroundColor:'tomato'
+	};
+	return (<div style={style}>
 		<h1>{title}</h1>
 		<button onClick={up}>+</button>
 		<input type="number" value={step} onChange={stepHandler}/>
@@ -71,7 +76,11 @@ function CounterUseEffect(){
 			clearInterval(id);
 		}
 	}, []);
-	return <div>
+	const style = {
+		border: '10px solid black',
+		padding: 10
+	};
+	return <div style={style} >
 		<h1>useEffect Counter</h1> {count}
 	</div>
 }
